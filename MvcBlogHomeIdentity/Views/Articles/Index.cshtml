@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MvcBlogHomeIdentity.Areas.Identity.Data
+@model ArticleIndexVM
+@{
+    ViewData["Title"] = "Articles Page";
+}
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+<div class="table">
+	<h3>Category</h3>
+	<ul class="navbar-nav flex-grow-1">
+		<div class="row row-cols-1 row-cols-md-2">
+            @foreach (var item in Model.Categories)
+            {
+                <div class="col mb-4">
+                    <div class="card">
+                        <img src=@Html.DisplayFor(modelItem => item.PhotoPath) height="200" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Context)</p>
+                            <a href="#" class="btn btn-warning">Go Articles</a>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <a href="#" class="btn btn-warning">Write Article</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+	</ul>
+</div>
+
