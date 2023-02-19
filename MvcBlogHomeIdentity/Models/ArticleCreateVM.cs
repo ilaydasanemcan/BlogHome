@@ -1,18 +1,18 @@
 ﻿using MvcBlogHomeIdentity.Areas.Identity.Data;
 using MvcBlogHomeIdentity.Entities.Concrete;
-using MVCBlogSitesi.Entities.Abstract;
 
-namespace MVCBlogSitesi.Entities.Concrete
+namespace MvcBlogHomeIdentity.Models
 {
-    public class Article : BaseEntity
+    public class ArticleCreateVM
     {
-        public Article()
+        public ArticleCreateVM()
         {
             Categories = new HashSet<Category>();
         }
+        public string Name { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-        public ICollection<Category>? Categories { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
         public string Context { get; set; }
-        public int? Like { get; set; }
+        public string ApplicationUserId { get; set; }
     }
 }

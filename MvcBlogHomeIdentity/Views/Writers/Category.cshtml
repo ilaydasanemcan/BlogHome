@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MvcBlogHomeIdentity.Areas.Identity.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@model WriterCategoryVM
+@{
+    ViewData["Title"] = "Writer Categories";
+}
+<form asp-action="Category">
+    <div class="container bg-warning bg-opacity-10">
+        <br />
+        <h3>Choose Your Catgeories</h3>
+        <br />
+        <div class="row">
+            <div class="col-6">
+                @foreach (var item in Model.Categories)
+                {
+                    @if (@Model.WriterCategories.Contains(item))
+                    {
+                        <div class="form-check">
+                            <input class="form-check-input" name="ids" type="checkbox" value="@item.Id" checked />
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-check">
+                            <input class="form-check-input" name="ids" type="checkbox" value="@item.Id" />
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </div>
+                    }
+                }
+                <br/>
+                <input type="submit" value="Send" asp-route-id="@SignInManager.UserManager.GetUserId(User)" class="btn btn-outline-warning" />
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+</form>

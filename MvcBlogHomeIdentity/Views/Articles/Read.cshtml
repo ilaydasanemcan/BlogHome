@@ -1,0 +1,25 @@
+﻿@model ArticleReadVM
+@{
+    ViewData["Title"] = "Article";
+}
+<h1></h1>
+<form>
+    <input asp-for="Id" hidden />
+    <div class="container bg-warning bg-opacity-10">
+        <br />
+        <h1>@Model.Name</h1>
+        <br />
+        @*<h3>Categories : @Model.Categories</h3>*@
+        <br />
+        <br />
+        <h5>@Model.Context</h5>
+        <br />
+        <br />
+        <h5>Writer : @Model.ApplicationUser</h5>
+        <h5>Like : @Model.Like</h5>
+        <h5>Create Date : @Model.dateTime.ToString("yyyy-MM-dd")</h5>
+        <h5>Read Time : @Model.ReadTime Minute</h5>
+        <br />
+        <br />
+    </div>
+</form>

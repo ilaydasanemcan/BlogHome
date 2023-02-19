@@ -88,7 +88,7 @@ namespace MvcBlogHomeIdentity.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [StringLength(10, ErrorMessage = "Only numbers, you can write.")]
+            [StringLength(11, ErrorMessage = "Only numbers, you can write.")]
             [Phone]
             [Display(Name = "PhoneNumber")]
             public string PhoneNumber { get; set; }
@@ -114,8 +114,14 @@ namespace MvcBlogHomeIdentity.Areas.Identity.Pages.Account
 
             
             [Display(Name = "PhotoPath")]
-            [StringLength(200, ErrorMessage = "The password and confirmation password do not match.")]
+            [StringLength(200)]
             public string PhotoPath { get; set; }
+
+            [Display(Name = "Description")]
+            [StringLength(500)]
+            public string Description { get; set; }
+
+
         }
 
 
@@ -135,6 +141,9 @@ namespace MvcBlogHomeIdentity.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName=Input.LastName;
                 user.PhoneNumber = Input.PhoneNumber;
+                user.Email = Input.Email;
+                user.PhotoPath = Input.PhotoPath;
+                user.Description = Input.Description;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

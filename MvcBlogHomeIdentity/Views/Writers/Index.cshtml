@@ -3,8 +3,6 @@
     ViewData["Title"] = "Writers Page";
 }
 <h1>Writers</h1>
-<br />
-<br />
 <form asp-action="Search" method="post">
     <div class="form-group">
         @*<label asp-for="Name" class="control-label"></label>
@@ -14,7 +12,7 @@
             <input type="submit" value="Search" class="btn btn-primary" />
         </div>*@
     </div>
-    <table class="table">
+    <table class="table bg-warning bg-opacity-10">
         <thead>
             <br />
             <br />
@@ -33,11 +31,11 @@
                     <tr>
                         @if (item.PhotoPath != null)
                         {
-                            <td><img class="rounded" src="@item.PhotoPath" alt="photo" width="70" height="70" /></td>
+                            <td><img class="img-thumbnail" style="border-color:black" src="/image/@item.PhotoPath" alt="photo" width="70" height="70" /></td>
                         }
                         else
                         {
-                            <td><img class="rounded" src="/image/default.jpeg" alt="default" width="70" height="70" /></td>
+                            <td><img class="img-thumbnail" style="border-color:black" src="/image/default.jpeg" alt="default" width="70" height="70" /></td>
                         }
                         <td>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
                         <td>@Html.DisplayFor(modelItem => item.UserName)</td>
