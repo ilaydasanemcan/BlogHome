@@ -37,6 +37,12 @@
                         <li class=nav-item>
                             <a class="nav-link text-white fs-5 " asp-area="" asp-controller="Writers" asp-action="Index">Writers</a>
                         </li>
+                        @if (@SignInManager.UserManager.GetUserId(User) != null)
+                        {
+                            <li class=nav-item>
+                                <a class="nav-link text-white fs-5 " asp-area="" asp-route-id="@SignInManager.UserManager.GetUserId(User)" asp-controller="Writers" asp-action="Profile">Profile</a>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <partial name="_LoginPartial" />

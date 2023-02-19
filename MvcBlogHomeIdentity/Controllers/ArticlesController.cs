@@ -40,9 +40,11 @@ namespace MvcBlogHomeIdentity.Controllers
         public IActionResult Read(int id)
         {
             var article = articleRepository.GetAllIncludeUsers(id);
+            var user=writerRepository.GetById(article.ApplicationUser.Id);
             //var articleC = articleRepository.GetByIncludeCategory(id);
             ArticleReadVM articleReadVM = new ArticleReadVM();
             articleReadVM.Id = article.Id;
+            articleReadVM.UserId = user.Id;
             articleReadVM.Name = article.Name;
             articleReadVM.Context = article.Context;
             articleReadVM.ReadTime = article.Context.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries).Length/2;

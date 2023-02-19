@@ -15,7 +15,7 @@
         <h5>@Model.Context</h5>
         <br />
         <br />
-        <h5>Writer : @Model.ApplicationUser</h5>
+        <a asp-controller="Writers" class="link-secondary" asp-action="Profile" asp-route-id="@Model.UserId"><h5>@Model.ApplicationUser</h5></a>
         <h5>Like : @Model.Like</h5>
         <h5>Create Date : @Model.dateTime.ToString("yyyy-MM-dd")</h5>
         <h5>Read Time : @Model.ReadTime Minute</h5>
