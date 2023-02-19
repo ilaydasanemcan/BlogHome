@@ -1,35 +1,56 @@
-﻿@model WriterProfileVM
+﻿@using Microsoft.AspNetCore.Identity
+@using MvcBlogHomeIdentity.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@model WriterProfileVM
 @{
     ViewData["Title"] = "Writers Profile";
 }
 <form>
     <input asp-for="Id" hidden />
-    <div class="container bg-danger bg-opacity-10">
-        <h1>Profile</h1>
+    <div class="container bg-warning bg-opacity-10">
+        <br />
+        <h1>@Model.FirstName's Profile</h1>
+        <br />
+        <br />
         <div class="row">
-            <div class="col-md-3">
-            @if (Model.PhotoPath!=null)
-                {
-                    <td><img src=@Model.PhotoPath alt="photo" width="70" height="70" /></td>
-                }
-                else
-                {
-                    <td><img src="/image/default.jpeg" alt="default" width="150" height="150" /></td>
-                }
+            <div class="col-6 col-md-3">
+                <div class="card" style="width: 18rem;">
+                    @if (Model.PhotoPath!=null)
+                    {
+                        <td><img class="img-thumbnail" style="border-color:white" src="/image/@Model.PhotoPath" alt="photo"/></td>
+                    }
+                    else
+                    {
+                        <td><img class="img-thumbnail top-50" style="border-color:white" src="/image/default.jpeg" alt="default"/></td>
+                    }
+                    <div class="card-body">
+                        @if(Model.Description!=null)
+                        {
+                            <h5 class="card-title">Description</h5>
+                            <p class="card-text">@Model.Description</p>
+                        }
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Name : @Model.FirstName @Model.LastName</li>
+                        <li class="list-group-item">UserName : @Model.UserName</li>
+                        @if (Model.PhoneNumber != null)
+                        {
+                            <li class="list-group-item">PhoneNumber : @Model.PhoneNumber</li>
+                        }
+                        @if (SignInManager.UserManager.GetUserId(User) == Model.Id)
+                        {
+                            <a asp-controller="Articles" asp-action="Write" asp-route-id="@SignInManager.UserManager.GetUserId(User)" class="btn btn-outline-warning">Write Articles</a>
+                            <a asp-controller="Writers" asp-action="Category" asp-route-id="@SignInManager.UserManager.GetUserId(User)" class="btn btn-outline-warning">Choose Your Category</a>
+                        }
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-9">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4>Name : @Model.FirstName @Model.LastName</h4>
-                    </div>
-                    <div class="col-md-12">
-                        <h4>UserName : @Model.UserName</h4>
-                    </div>
+            <div class="col-md-8">
                     @foreach (var item in Model.Articles)
                     {
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
+                        <div class="card border mb-2">
+                            <div class="card-body">
                                     <h5 class="card-title">@item.Name</h5>
                                     @if (item.Context.Length >= 200)
                                     {
@@ -39,17 +60,29 @@
                                     {
                                         <p class="card-text">@item.Context</p>
                                     }
-                                    <a href="" class="btn btn-warning">Go To Article</a>
-                                </div>
+                                    <p class="card-text" style="color:dimgray">Like: @item.Like</p>
+                                    <p class="card-text" style="color:dimgray">Create Time: @item.CreateTime.ToString("yyyy-MM-dd")</p>
+                                    <a asp-controller="Articles" asp-action="Read" asp-route-id="@item.Id" class="btn btn-warning">Go To Article</a>
+                                    &nbsp;
+                                    @if (SignInManager.UserManager.GetUserId(User) == Model.Id)
+                                    {
+                                        <a asp-controller="Articles" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-warning">Delete Article</a>
+                                    }
+                                    <br />
+                                    <br>
+                                    
                             </div>
-                            <br />
                         </div>
-                        <br />
                     }
-                    
-                </div>
             </div>
         </div>
+        <br />
     </div> 
 </form>
+<br />
+<br />
+<br />
+<br />
+
+<br />
     

@@ -22,6 +22,21 @@ namespace MvcBlogHomeIdentity.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("ApplicationUserCategory", b =>
+                {
+                    b.Property<string>("ApplicationUsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CategoriesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ApplicationUsersId", "CategoriesId");
+
+                    b.HasIndex("CategoriesId");
+
+                    b.ToTable("ApplicationUserCategory");
+                });
+
             modelBuilder.Entity("ArticleCategory", b =>
                 {
                     b.Property<int>("ArticlesId")
@@ -66,15 +81,15 @@ namespace MvcBlogHomeIdentity.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "fd37e449-8e71-4f2a-b075-5ab77a8b15f1",
-                            ConcurrencyStamp = "65082053-85cb-4d79-8a68-c7c99966bd1e",
+                            Id = "a4997b6f-70ee-4dae-961c-5a60104c6677",
+                            ConcurrencyStamp = "c455efc6-50bb-485a-b638-74402cc4c8ef",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "c0ce4489-7a83-40e4-9a96-2f134843030a",
-                            ConcurrencyStamp = "833cb466-f98c-4a08-abdc-c66b6612402d",
+                            Id = "54935507-70ba-4e09-afca-27d7f3aa074e",
+                            ConcurrencyStamp = "8659d80f-0c3a-4535-93d5-5c88daa98bb7",
                             Name = "standart",
                             NormalizedName = "STANDART"
                         });
@@ -135,7 +150,7 @@ namespace MvcBlogHomeIdentity.Migrations
                             Id = 1,
                             ClaimType = "IsAdmin",
                             ClaimValue = "true",
-                            UserId = "53839ad2-9d23-4109-ae49-9165ce23b612"
+                            UserId = "88e9907e-6afa-4d7d-8b06-68ce08103e51"
                         });
                 });
 
@@ -180,13 +195,13 @@ namespace MvcBlogHomeIdentity.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "53839ad2-9d23-4109-ae49-9165ce23b612",
-                            RoleId = "fd37e449-8e71-4f2a-b075-5ab77a8b15f1"
+                            UserId = "88e9907e-6afa-4d7d-8b06-68ce08103e51",
+                            RoleId = "a4997b6f-70ee-4dae-961c-5a60104c6677"
                         },
                         new
                         {
-                            UserId = "e1404688-b974-4d5a-b588-6b8508f63834",
-                            RoleId = "c0ce4489-7a83-40e4-9a96-2f134843030a"
+                            UserId = "2084a2c3-a4f8-4e5b-83f1-61d36d75d3bf",
+                            RoleId = "54935507-70ba-4e09-afca-27d7f3aa074e"
                         });
                 });
 
@@ -221,6 +236,9 @@ namespace MvcBlogHomeIdentity.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -291,9 +309,9 @@ namespace MvcBlogHomeIdentity.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "53839ad2-9d23-4109-ae49-9165ce23b612",
+                            Id = "88e9907e-6afa-4d7d-8b06-68ce08103e51",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f636db6e-8f79-41dd-a0c6-889e97a354d3",
+                            ConcurrencyStamp = "9cf8698a-55d9-4c4a-864d-252e997192ff",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -301,17 +319,17 @@ namespace MvcBlogHomeIdentity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJN6JeNwHtrTjqQefGxKrYDK/IkrV7uB7ipXzukULxlbilhEsiUlhcs2r3FS/wrJoQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBcYBbHwLBLejO9uwkMd/XenlUCqHr0aoyxL6Df2M1Aj0O1TyWlJs1gkF8c9OC753Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f126017d-eb75-4ca0-9b96-8c2feb07d813",
+                            SecurityStamp = "35051711-4985-4ed6-aefb-3f966fc81f04",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
                         new
                         {
-                            Id = "e1404688-b974-4d5a-b588-6b8508f63834",
+                            Id = "2084a2c3-a4f8-4e5b-83f1-61d36d75d3bf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4aa50d87-d554-45b6-bc03-da6889236aa4",
+                            ConcurrencyStamp = "fe2d4f64-11d9-4d3f-aeb0-f153a5c798f2",
                             Email = "standart@standart.com",
                             EmailConfirmed = true,
                             FirstName = "Standart",
@@ -319,9 +337,9 @@ namespace MvcBlogHomeIdentity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "STANDART@STANDART.COM",
                             NormalizedUserName = "STANDART@STANDART.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEmY5SZE/JWIyTEA+qAS4LoNz8qxljc9czu4QdJwsh1LfwD4LBylwytcHDV0+yPVIQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPXy34wp3WJqXq/uIxOABpg3RXlfHUIY0idonuPy4+3GTZGWZ8SHdRnGhWdaISkLUA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e28bc6e5-6fd7-42d5-baa8-78025d4301f9",
+                            SecurityStamp = "199320cb-a2d3-4c6e-af43-3e0a4a30c2df",
                             TwoFactorEnabled = false,
                             UserName = "standart@standart.com"
                         });
@@ -356,64 +374,64 @@ namespace MvcBlogHomeIdentity.Migrations
                         new
                         {
                             Id = 1,
-                            Context = "orem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
-                            CreateTime = new DateTime(2023, 2, 6, 22, 49, 22, 496, DateTimeKind.Local).AddTicks(8522),
+                            Context = "Lorem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
+                            CreateTime = new DateTime(2023, 2, 9, 20, 49, 28, 526, DateTimeKind.Local).AddTicks(2512),
                             Name = "Programming",
                             PhotoPath = "/image/Programming.jpg"
                         },
                         new
                         {
                             Id = 2,
-                            Context = "orem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
-                            CreateTime = new DateTime(2023, 2, 6, 22, 49, 22, 496, DateTimeKind.Local).AddTicks(8525),
+                            Context = "Lorem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
+                            CreateTime = new DateTime(2023, 2, 9, 20, 49, 28, 526, DateTimeKind.Local).AddTicks(2516),
                             Name = "DataScience",
                             PhotoPath = "/image/DataScience.jpeg"
                         },
                         new
                         {
                             Id = 3,
-                            Context = "orem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
-                            CreateTime = new DateTime(2023, 2, 6, 22, 49, 22, 496, DateTimeKind.Local).AddTicks(8527),
+                            Context = "Lorem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
+                            CreateTime = new DateTime(2023, 2, 9, 20, 49, 28, 526, DateTimeKind.Local).AddTicks(2518),
                             Name = "Technology",
                             PhotoPath = "/image/Technology.jpeg"
                         },
                         new
                         {
                             Id = 4,
-                            Context = "orem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
-                            CreateTime = new DateTime(2023, 2, 6, 22, 49, 22, 496, DateTimeKind.Local).AddTicks(8528),
+                            Context = "Lorem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
+                            CreateTime = new DateTime(2023, 2, 9, 20, 49, 28, 526, DateTimeKind.Local).AddTicks(2520),
                             Name = "SelfImprovement",
                             PhotoPath = "/image/SelfImprovement.jpeg"
                         },
                         new
                         {
                             Id = 5,
-                            Context = "orem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
-                            CreateTime = new DateTime(2023, 2, 6, 22, 49, 22, 496, DateTimeKind.Local).AddTicks(8529),
+                            Context = "Lorem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
+                            CreateTime = new DateTime(2023, 2, 9, 20, 49, 28, 526, DateTimeKind.Local).AddTicks(2522),
                             Name = "Writing",
                             PhotoPath = "/image/Writing.jpeg"
                         },
                         new
                         {
                             Id = 6,
-                            Context = "orem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
-                            CreateTime = new DateTime(2023, 2, 6, 22, 49, 22, 496, DateTimeKind.Local).AddTicks(8532),
+                            Context = "Lorem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
+                            CreateTime = new DateTime(2023, 2, 9, 20, 49, 28, 526, DateTimeKind.Local).AddTicks(2524),
                             Name = "Relationships",
                             PhotoPath = "/image/Relationships.jpeg"
                         },
                         new
                         {
                             Id = 7,
-                            Context = "orem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
-                            CreateTime = new DateTime(2023, 2, 6, 22, 49, 22, 496, DateTimeKind.Local).AddTicks(8533),
+                            Context = "Lorem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
+                            CreateTime = new DateTime(2023, 2, 9, 20, 49, 28, 526, DateTimeKind.Local).AddTicks(2526),
                             Name = "MachineLearning",
                             PhotoPath = "/image/MachineLearning.jpeg"
                         },
                         new
                         {
                             Id = 8,
-                            Context = "orem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
-                            CreateTime = new DateTime(2023, 2, 6, 22, 49, 22, 496, DateTimeKind.Local).AddTicks(8534),
+                            Context = "Lorem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel.",
+                            CreateTime = new DateTime(2023, 2, 9, 20, 49, 28, 526, DateTimeKind.Local).AddTicks(2527),
                             Name = "Productivity",
                             PhotoPath = "/image/Productivity.jpeg"
                         });
@@ -428,6 +446,7 @@ namespace MvcBlogHomeIdentity.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ApplicationUserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Context")
@@ -437,7 +456,7 @@ namespace MvcBlogHomeIdentity.Migrations
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Like")
+                    b.Property<int?>("Like")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -449,6 +468,21 @@ namespace MvcBlogHomeIdentity.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Articles");
+                });
+
+            modelBuilder.Entity("ApplicationUserCategory", b =>
+                {
+                    b.HasOne("MvcBlogHomeIdentity.Areas.Identity.Data.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("ApplicationUsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MvcBlogHomeIdentity.Entities.Concrete.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ArticleCategory", b =>
@@ -521,7 +555,9 @@ namespace MvcBlogHomeIdentity.Migrations
                 {
                     b.HasOne("MvcBlogHomeIdentity.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
                         .WithMany("Articles")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ApplicationUser");
                 });

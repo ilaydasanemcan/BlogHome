@@ -10,6 +10,8 @@ namespace MvcBlogHomeIdentity.Models
         public string LastName { get; set; }
         public string UserName { get; set; }
         public string PhotoPath { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Description { get; set; }
         public IEnumerable<ApplicationUser> Writers { get; set; }
         public ApplicationUser Writer { get; set; }
         public IEnumerable<Article> Articles { get; set; }

@@ -5,6 +5,6 @@ namespace MvcBlogHomeIdentity.Repositories.Abstract
 {
     public interface ICategoryRepository : IRepository<Category>
     {
-        
+        Category GetById(int id);
     }
 }

@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MvcBlogHomeIdentity.Areas.Identity.Data
+@model ArticleCategoryVM
+@{
+    ViewData["Title"] = "Categories Articles Page";
+}
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+<div class="container bg-warning bg-opacity-10">
+    <div class="table">
+        <h3>Articles</h3>
+        <ul class="navbar-nav flex-grow-1">
+            <div class="row row-cols-1 row-cols-md-2">
+                @if (Model.Articles == null)
+                {
+                    <h5>New articles will be added very soon</h5>
+                }
+                else
+                {
+                    @foreach (var item in Model.Articles)
+                    {
+                        <div class="col mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                                    @if (item.Context.Length >= 200)
+                                    {
+                                        <p class="card-text">@item.Context.Substring(0, 200) ...</p>
+
+                                    }
+                                    else
+                                    {
+                                        <p class="card-text">@item.Context</p>
+                                    }
+                                    <p class="card-text" style="color:grey">Like : @item.Like</p>
+                                    <p class="card-text" style="color:grey">Create Time : @item.CreateTime.ToString("yyyy-MM-dd")</p>
+                                    <p class="card-text">@Html.DisplayFor(modelItem => item.ApplicationUser)</p>
+                                    <td>
+                                        <a asp-controller="Articles" asp-action="Read" asp-route-id="@item.Id" class="btn btn-warning">Go To Article</a>
+                                    </td>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </ul>
+    </div>
+</div>

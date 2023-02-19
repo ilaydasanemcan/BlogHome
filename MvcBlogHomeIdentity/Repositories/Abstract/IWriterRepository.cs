@@ -6,7 +6,9 @@ namespace MvcBlogHomeIdentity.Repositories.Abstract
 	public interface IWriterRepository : IRepository<ApplicationUser>
 	{
         ApplicationUser GetById(string id);
-        List<ApplicationUser> Search(string name);
+        //List<ApplicationUser> Search(string name);
         ApplicationUser GetAllIncludeArticle(string id);
+        ApplicationUser GetAllIncludeCategory(string id);
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MvcBlogHomeIdentity.Areas.Identity.Data;
+using MvcBlogHomeIdentity.Entities.Concrete;
 using MvcBlogHomeIdentity.Repositories.Abstract;
 using MVCBlogSitesi.Repositories.Concrete;
 
@@ -19,14 +20,19 @@ namespace MvcBlogHomeIdentity.Repositories.Concrete
 			return db.Users.FirstOrDefault(a => a.Id==id);
         }
 
-        public List<ApplicationUser> Search(string name)
-        {
-            return db.Users.Where(a => a.UserName.Contains(name)).ToList();
-        }
+        //public List<ApplicationUser> Search(string name)
+        //{
+        //    return db.Users.Where(a => a.UserName.Contains(name)).ToList();
+        //}
 
         public ApplicationUser GetAllIncludeArticle(string id)
         {
             return db.ApplicationUser.Include(a => a.Articles).FirstOrDefault(a => a.Id == id);
+        }
+
+        public ApplicationUser GetAllIncludeCategory(string id)
+        {
+            return db.ApplicationUser.Include(a => a.Categories).FirstOrDefault(a => a.Id == id);
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using MvcBlogHomeIdentity.Areas.Identity.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MvcBlogHomeIdentity.Areas.Identity.Data;
 using MvcBlogHomeIdentity.Entities.Concrete;
 using MvcBlogHomeIdentity.Repositories.Abstract;
+using MVCBlogSitesi.Entities.Concrete;
 using MVCBlogSitesi.Repositories.Concrete;
 using System.Linq;
 
@@ -19,5 +21,10 @@ namespace MvcBlogHomeIdentity.Repositories.Concrete
         //{
         //    return db.Categories.Select(c => c.Name).All();
         //}
+
+        public Category GetById(int id)
+        {
+            return db.Categories.FirstOrDefault(a => a.Id == id);
+        }
     }
 }
